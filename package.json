@@ -1,0 +1,14 @@
+{
+  "name": "nodemysql",
+  "version": "1.0.0",
+  "description": "tutorial de node com mysql",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"test:\" \"echo \\\"Error: no test specified\\\" && exist 1\""
+  },
+  "author": "Davi Souza",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  }
+}
