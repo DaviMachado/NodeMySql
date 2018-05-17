@@ -1,4 +1,5 @@
 const mysql      = require('mysql'); // require = módulo = biblioteca JS
+// Conexão com o Banco de dados MySql
 const connection = mysql.createConnection({
   host     : 'localhost',
   port     : 3306,
@@ -7,13 +8,14 @@ const connection = mysql.createConnection({
   database : 'nodemysql'
 });
 
-
+// Conectando no BD e criando/populando a tabela
 connection.connect(function(err){
   if(err) return console.log(err);
   console.log('conectou!');
   createTable(connection);
 })
 
+// Criação da tabela
 function createTable(conn){
 	const sql = "CREATE TABLE IF NOT EXISTS Clientes (\n"+
 				"ID int NOT NULL AUTO_INCREMENT,\n"+
@@ -29,6 +31,7 @@ function createTable(conn){
 	});
 }
 
+//Populando a tabela
 function addRows(conn){
 	const sql = "INSERT INTO Clientes(Nome,CPF) VALUES ?";
 	const values = [
