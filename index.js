@@ -16,3 +16,28 @@ app.use('/', router);
 // Inicia o servidor
 app.listen(port);
 console.log('API funcionando!');
+
+// listagem de clientes
+function execSQLQuery(sqlQry, res){
+	const connection = mysql.createConnection({
+	  host     : 'localhost',
+	  port     : 3306,
+	  user     : 'root',
+	  password : '',
+	  database : 'nodemysql'
+	});
+
+	connection.query(sqlQry, function(error, results, fields){
+		if(error)
+			res.json(error);
+		else
+			res.json(results);
+		connection.end();
+		console.log('Executou!');
+	});
+}
+
+// Rota para listar os clientes
+router.get('/clientes', (req, res)=>{
+	execSQLQuery('SELECT * FROM Clientes', res);
+})
