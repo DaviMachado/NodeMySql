@@ -38,6 +38,9 @@ function execSQLQuery(sqlQry, res){
 }
 
 // Rota para listar os clientes
-router.get('/clientes', (req, res)=>{
-	execSQLQuery('SELECT * FROM Clientes', res);
+// Pesquisa conforme o ID colocado no final da URL
+router.get('/clientes/:id?', (req, res)=>{
+	let filter = '';
+	if(req.params.id) filter = ' WHERE ID=' + parseInt(req.params.id);
+	execSQLQuery('SELECT * FROM Clientes' + filter, res);
 })
