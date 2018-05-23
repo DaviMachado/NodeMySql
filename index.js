@@ -49,3 +49,10 @@ router.get('/clientes/:id?', (req, res)=>{
 router.delete('/clientes/:id', (req, res)=> {
 	execSQLQuery('DELETE FROM Clientes WHERE ID=' + parseInt(req.params.id), res);
 })
+
+// Rota para adicionar um cliente
+router.post('/clientes', (req, res)=>{
+	const nome = req.body.nome.substring(0,150);
+	const cpf = req.body.cpf.substring(0,11);
+	execSQLQuery(`INSERT INTO Clientes(Nome, CPF) VALUES('${nome}', '${cpf}')`, res);
+});
